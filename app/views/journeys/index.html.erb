@@ -1,0 +1,32 @@
+<h1>All Journeys</h1>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>id</th>
+			<th>From</th>
+			<th>To</th>
+			<th>Start date</th>
+			<th>End date</th>
+			<th>Travel mode</th>
+			<th>Km</th>
+			<th>Edit</th>
+			<th>Delete</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @journeys.each do |journey| %>
+		<tr>
+			<td><%= journey.id %></td>
+			<td><%= journey.from_city.name unless journey.from_city == nil%></td>
+			<td><%= journey.to_city.name unless journey.to_city == nil%></td>
+			<td><%= journey.start_date.strftime("%m/%d/%Y") unless journey.start_date == nil %></td>
+			<td><%= journey.end_date.strftime("%m/%d/%Y") unless journey.end_date == nil %></td>
+			<td><%= journey.travel_mode.name unless journey.travel_mode == nil %></td>
+			<td><%= journey.km %></td>
+			<td><%= link_to "Edit", edit_journey_path(journey) %></td>
+			<td><%= link_to "Delete", journey, method: :delete %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+<p><%= link_to "New", new_journey_path %></p>

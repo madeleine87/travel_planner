@@ -1,0 +1,22 @@
+<h1>Travel Modes</h1>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>id</th>
+			<th>Name</th>
+			<th>Edit</th>
+			<th>Delete</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @travel_modes.each do |travel_mode| %>
+		<tr>
+			<td><%= travel_mode.id %></td>
+			<td><%= travel_mode.name %></td>
+			<td><%= link_to "Edit", edit_travel_mode_path(travel_mode) %></td>
+			<td><%= link_to "Delete", travel_mode, method: :delete %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+<p><%= link_to "New", new_travel_mode_path %></p>
