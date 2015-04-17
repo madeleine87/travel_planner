@@ -2,7 +2,7 @@ class CountriesController < ApplicationController
 	
   before_action :fetch_country, only:[:show, :edit, :update, :destroy]
 	
-  before_action :authenticate_authentication!
+
 	
   def index
 	  @countries = Country.all

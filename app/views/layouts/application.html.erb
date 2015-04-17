@@ -41,10 +41,10 @@
           <ul class="nav navbar-nav">
             <li><%= link_to "Link1", "/path1"  %></li>
             <li><%= link_to "Link2", "/path2"  %></li>
-            <% unless authentication_signed_in? %>
-            <li><%= link_to "Log in", "/authentications/sign_in"  %></li>
+            <% unless user_signed_in? %>
+            <li><%= link_to "Log in", "/users/sign_in"  %></li>
             <% else %>
-            <li><%= link_to "Log out", "/authentications/sign_out", method: :delete %></li>
+            <li><%= link_to "Log out", "/users/sign_out", method: :delete %></li>
             <% end %>
           </ul>
         </div>
