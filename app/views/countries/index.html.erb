@@ -13,10 +13,20 @@
 		<tr>
 			<td><%= country.id %></td>
 			<td><%= country.name %></td>
-			<td><%= link_to "Edit", edit_country_path(country) %></td>
-			<td><%= link_to "Delete", country, method: :delete %></td>
+			<td>
+				<% if can? :update, country %>
+					<%= link_to "Edit", edit_country_path(country) %>
+				<% end %>
+			</td>
+			<td>
+				<% if can? :destroy, country %>
+					<%= link_to "Delete", country, method: :delete %>
+				<% end %>
+			</td>
 		</tr>
 		<% end %>
 	</tbody>
 </table>
-<p><%= link_to "New", new_country_path %></p>
+<% if can? :create, Country %>
+	<p><%= link_to "New", new_country_path %></p>
+<% end %>

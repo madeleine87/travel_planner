@@ -13,10 +13,20 @@
 		<tr>
 			<td><%= travel_mode.id %></td>
 			<td><%= travel_mode.name %></td>
-			<td><%= link_to "Edit", edit_travel_mode_path(travel_mode) %></td>
-			<td><%= link_to "Delete", travel_mode, method: :delete %></td>
+			<td>
+				<% if can? :update, travel_mode %>
+					<%= link_to "Edit", edit_travel_mode_path(travel_mode) %>
+				<% end %>
+			</td>
+			<td>
+				<% if can? :destroy, travel_mode %>
+					<%= link_to "Delete", travel_mode, method: :delete %>
+				<% end %>
+			</td>
 		</tr>
 		<% end %>
 	</tbody>
 </table>
-<p><%= link_to "New", new_travel_mode_path %></p>
+<% if can? :create, TravelMode %>
+	<%= link_to "New", new_travel_mode_path %>
+<% end %>

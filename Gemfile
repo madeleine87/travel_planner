@@ -44,3 +44,4 @@ gem 'twitter-bootstrap-rails'
 
 gem 'devise'
 gem 'slim-rails'
+gem 'cancan'

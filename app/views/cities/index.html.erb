@@ -10,14 +10,24 @@
 	</thead>
 	<tbody>
 		<% @cities.each do |city| %>
-		
+
 		<tr>
 			<td><%= city.id %></td>
 			<td><%= city.name %>, <%= city.country.name unless city.country == nil %></td>
-			<td><%= link_to "Edit", edit_city_path(city) %></td>
-			<td><%= link_to "Delete", city, method: :delete %></td>
+			<td>
+				<% if can? :update, city %>
+					<%= link_to "Edit", edit_city_path(city) %>
+				<% end %>
+			</td>
+			<td>
+				<% if can? :destroy, city %>
+					<%= link_to "Delete", city, method: :delete %>
+				<% end %>
+			</td>
 		</tr>
 		<% end %>
 	</tbody>
 </table>
-<%= link_to "New", new_city_path %>
+<% if can? :create, City %>
+	<%= link_to "New", new_city_path %>
+<% end %>

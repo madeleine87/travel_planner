@@ -27,4 +27,6 @@
 	Km:
 	<%= @journey.km %>
 </div>
-<%= link_to "Back", journeys_path %>
+<% if can? :read, Journey %>
+	<%= link_to "Back", journeys_path %>
+<% end %>

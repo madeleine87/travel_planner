@@ -7,4 +7,6 @@
 	Travel mode:
 	<%= @travel_mode.name %>
 </div>
-<%= link_to "Back", travel_modes_path %>
+<% if can? :read, TravelMode %>
+	<%= link_to "Back", travelmodes_path %>
+<% end %>

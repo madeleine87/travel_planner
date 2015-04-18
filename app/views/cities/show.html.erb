@@ -7,4 +7,6 @@
 	Name:
 	<%= @city.name %>
 </div>
+<% if can? :read, City %>
 <%= link_to "Back", cities_path %></br>
+<% end %>

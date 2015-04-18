@@ -23,4 +23,6 @@
 	City:
 	<%= @user.city.name unless @user.city == nil %>
 </div>
-<%= link_to "Back", users_path %>
+<% if can? :read, User %>
+	<%= link_to "Back", users_path %>
+<% end %>

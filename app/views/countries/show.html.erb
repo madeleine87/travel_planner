@@ -7,4 +7,6 @@
 	Name:
 	<%= @country.name %>
 </div>
-<%= link_to "Back", countries_path %></br>
+<% if can? :read, Country %>
+	<%= link_to "Back", countries_path %></br>
+<% end %>

@@ -23,10 +23,20 @@
 			<td><%= journey.end_date.strftime("%m/%d/%Y") unless journey.end_date == nil %></td>
 			<td><%= journey.travel_mode.name unless journey.travel_mode == nil %></td>
 			<td><%= journey.km %></td>
-			<td><%= link_to "Edit", edit_journey_path(journey) %></td>
-			<td><%= link_to "Delete", journey, method: :delete %></td>
+			<td>
+				<% if can? :update, journey %>
+					<%= link_to "Edit", edit_journey_path(journey) %>
+				<% end %>
+			</td>
+			<td>
+				<% if can? :destroy, journey %>
+					<%= link_to "Delete", journey, method: :delete %>
+				<% end %>
+			</td>
 		</tr>
 		<% end %>
 	</tbody>
 </table>
-<p><%= link_to "New", new_journey_path %></p>
+<% if can? :create, Journey %>
+	<p><%= link_to "New", new_journey_path %></p>
+<% end %>

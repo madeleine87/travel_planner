@@ -54,7 +54,7 @@
       <div class="row">
         <div class="col-lg-9">
           <%= bootstrap_flash %>
-          
+
           <%= yield %>
         </div>
         <div class="col-lg-3">
@@ -62,12 +62,32 @@
             <h3>Admin Panel</h3>
             <ul class="nav nav-list">
               <li class="nav-header">Dictionaries</li>
-              <li><%= link_to "Cities list", cities_path %></li>
-              <li><%= link_to "Countries list", countries_path %></li>
-              <li><%= link_to "Travel modes list", travel_modes_path %></li>
+              <li>
+                <% if can? :read, City %>
+                  <%= link_to "Cities list", cities_path %>
+                <% end %>
+              </li>
+              <li>
+                <% if can? :read, Country %>
+                  <%= link_to "Countries list", countries_path %>
+                <% end %>
+              </li>
+              <li>
+                <% if can? :read, TravelMode %>
+                  <%= link_to "Travel modes list", travel_modes_path %>
+                <% end %>
+              </li>
               <li class="nav-header">Users data</li>
-              <li><%= link_to "Users", users_path %></li>
-              <li><%= link_to "Journeys", journeys_path %></li>
+              <li>
+                <% if can? :read, User %>
+                  <%= link_to "Users", users_path %>
+                <% end %>
+              </li>
+              <li>
+                <% if can? :read, Journey %>
+                  <%= link_to "Journeys", journeys_path %>
+                <% end %>
+              </li>
             </ul>
             </div><!--/.well -->
             </div><!--/span-->

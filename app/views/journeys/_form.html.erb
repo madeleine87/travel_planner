@@ -45,6 +45,8 @@
   <%= f.submit class: "btn btn-default" %>
 </div>
 <div class="col-sm-offset-2 col-sm-10">
+  <% if can? [:create, :update], @journey %>
   <%= link_to "Back", journeys_path, class: "btn btn-default" %>
+  <% end %>
 </div>
 <% end %>
