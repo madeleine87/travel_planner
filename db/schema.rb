@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150418125704) do
+ActiveRecord::Schema.define(version: 20150418162322) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20150418125704) do
     t.integer  "from_city_id"
     t.integer  "to_city_id"
     t.integer  "travel_mode_id"
+    t.integer  "user_id"
   end
 
   create_table "travel_modes", force: true do |t|

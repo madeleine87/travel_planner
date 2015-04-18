@@ -28,6 +28,7 @@ class JourneysController < ApplicationController
 
 	def create
 		@journey = Journey.new(journey_params)
+		#@journey.user = current_user
  		if @journey.save
    	 	redirect_to @journey
   	else
