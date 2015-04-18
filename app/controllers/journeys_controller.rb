@@ -1,6 +1,6 @@
 class JourneysController < ApplicationController
 
-	before_action :fetch_journey, only:[:show, :edit, :update, :destroy]
+	load_and_authorize_resource
 
 	def index
 		@journeys = Journey.includes(:from_city, :to_city, :travel_mode).all
@@ -45,9 +45,5 @@ class JourneysController < ApplicationController
 	def journey_params
 		params.require(:journey).permit(:from_city_id, :to_city_id, :start_date, :end_date, :travel_mode_id, :km)
 	end
-
-	def fetch_journey
-    @journey = Journey.find(params[:id])
-  end
 end
 

@@ -1,11 +1,9 @@
 class CountriesController < ApplicationController
 
-  before_action :fetch_country, only:[:show, :edit, :update, :destroy]
-
-
+  load_and_authorize_resource
 
   def index
-	  @countries = Country.all
+    @countries = Country.all
   end
 
   def show
@@ -20,9 +18,9 @@ class CountriesController < ApplicationController
 	  @country = Country.new(country_params)
 
 	  if @country.save
- 	 	redirect_to @country
+ 	 	  redirect_to @country
 	  else
-  	render 'new'
+  	 render 'new'
 	  end
   end
 
@@ -37,18 +35,14 @@ class CountriesController < ApplicationController
 
   def update
 	  if @country.update(country_params)
-  	redirect_to @country
+  	 redirect_to @country
 	  else
-  	render 'edit'
+  	 render 'edit'
 	  end
   end
 
   private
 	  def country_params
-  	params.require(:country).permit(:name)
+  	 params.require(:country).permit(:name)
  	  end
-
- 	  def fetch_country
-      @country = Country.find(params[:id])
-    end
   end

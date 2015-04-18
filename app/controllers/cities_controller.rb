@@ -1,6 +1,6 @@
 class CitiesController < ApplicationController
 
-  before_action :fetch_city, only:[:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   def index
 		@cities = City.includes(:country).all
@@ -40,7 +40,6 @@ class CitiesController < ApplicationController
   def destroy
 
     @city.destroy
-
     redirect_to cities_path
   end
 
@@ -48,8 +47,4 @@ class CitiesController < ApplicationController
   	def city_params
     	params.require(:city).permit(:name, :country_id)
  	  end
-
-    def fetch_city
-        @city = City.find(params[:id])
-    end
   end
