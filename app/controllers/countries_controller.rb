@@ -4,7 +4,7 @@ class CountriesController < ApplicationController
   skip_load_resource :only  => [:create]
 
   def index
-    @countries = Country.all
+    @countries = Country.paginate(:page => params[:page], :per_page => 5)
   end
 
   def show

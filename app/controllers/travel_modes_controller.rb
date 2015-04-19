@@ -4,7 +4,7 @@ class TravelModesController < ApplicationController
   skip_load_resource :only  => [:create]
 
 	def index
-		@travel_modes = TravelMode.all
+		@travel_modes = TravelMode.paginate(:page => params[:page], :per_page => 5)
 	end
 
 	def new

@@ -26,5 +26,7 @@ table class="table table-striped"
 					- if can? :destroy, user
 						== link_to "Delete", user, method: :delete
 
+== will_paginate @users, renderer: BootstrapPagination::Rails
+
 - if can? :create, User
-	== link_to "New", new_user_path
+	== link_to "New", new_user_path, class: "btn btn-default btn-new"

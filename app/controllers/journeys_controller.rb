@@ -4,7 +4,7 @@ class JourneysController < ApplicationController
   skip_load_resource :only  => [:create]
 
 	def index
-		@journeys = Journey.includes(:from_city, :to_city, :travel_mode).all
+		@journeys = Journey.includes(:from_city, :to_city, :travel_mode).paginate(:page => params[:page], :per_page => 5)
 	end
 
 	def show

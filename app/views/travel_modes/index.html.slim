@@ -18,5 +18,7 @@ table class="table table-striped"
 					- if can? :destroy, travel_mode
 						== link_to "Delete", travel_mode, method: :delete
 
+== will_paginate @travel_modes, renderer: BootstrapPagination::Rails
+
 - if can? :create, TravelMode
-	== link_to "New", new_travel_mode_path
+	== link_to "New", new_travel_mode_path, class: "btn btn-default btn-new"

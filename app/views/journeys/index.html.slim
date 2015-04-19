@@ -29,6 +29,8 @@ table class="table table-striped"
 					- if can? :destroy, journey
 						== link_to "Delete", journey, method: :delete
 
+== will_paginate @journeys, renderer: BootstrapPagination::Rails
+
 - if can? :create, Journey
-	== link_to "New", new_journey_path
+	== link_to "New", new_journey_path, class: "btn btn-default btn-new"
 

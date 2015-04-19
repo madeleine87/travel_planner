@@ -19,5 +19,7 @@ table class="table table-striped"
 					- if can? :destroy, country
 						== link_to "Delete", country, method: :delete
 
+== will_paginate @countries, renderer: BootstrapPagination::Rails
+
 - if can? :create, Country
-	== link_to "New", new_country_path
+	== link_to "New", new_country_path, class: "btn btn-default btn-new"

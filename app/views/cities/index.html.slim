@@ -22,4 +22,4 @@ table class="table table-striped"
 == will_paginate @cities, renderer: BootstrapPagination::Rails
 
 - if can? :create, City
-	== link_to "New", new_city_path
+	== link_to "New", new_city_path, class: "btn btn-default btn-new"
