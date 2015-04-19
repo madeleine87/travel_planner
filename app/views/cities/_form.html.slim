@@ -1,0 +1,21 @@
+== form_for @city, :html => {:class => "form-horizontal"} do |f|
+  div.form-group
+    == f.label :id, class: "col-sm-2 control-label"
+    div.col-sm-10
+      = @city.id
+
+
+  div.form-group
+    == f.label :name, class: "col-sm-2 control-label"
+    div.col-sm-10
+      == f.text_field :name, class: "form-control"
+  div.form-group
+    == f.label :country_id, class: "col-sm-2 control-label"
+    div.col-sm-10
+      == f.select :country_id, Country.all.collect { |p| [ p.name, p.id ] }, {include_blank: true}, {:class => "form-control"}
+  div class="col-sm-offset-2 col-sm-10"
+    == f.submit class: "btn btn-default"
+  div class="col-sm-offset-2 col-sm-10"
+    - if can? [:create, :update], @city
+      == link_to "Back", cities_path, class: "btn btn-default"
+

@@ -1,6 +1,7 @@
 class CitiesController < ApplicationController
 
   load_and_authorize_resource
+  skip_load_resource :only  => [:create]
 
   def index
 		@cities = City.includes(:country).all
@@ -29,7 +30,6 @@ class CitiesController < ApplicationController
   end
 
   def update
-
   	if @city.update(city_params)
   		redirect_to @city
   	else

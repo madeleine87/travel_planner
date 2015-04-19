@@ -1,0 +1,21 @@
+h1 User
+div
+	| id:
+	== @user.id
+div
+	| Username:
+	== @user.username
+div
+	| Email:
+	== @user.email
+div
+	| First name:
+	== @user.first_name
+div
+	| Last name:
+	== @user.last_name
+div
+	| City:
+	== @user.city.name unless @user.city == nil
+- if can? :read, User
+	== link_to "Back", users_path

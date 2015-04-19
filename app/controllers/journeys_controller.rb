@@ -1,6 +1,7 @@
 class JourneysController < ApplicationController
 
 	load_and_authorize_resource
+  skip_load_resource :only  => [:create]
 
 	def index
 		@journeys = Journey.includes(:from_city, :to_city, :travel_mode).all

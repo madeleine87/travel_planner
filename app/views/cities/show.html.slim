@@ -1,0 +1,11 @@
+h1 Cities
+div
+	| id:
+	= @city.id
+
+div
+	| Name:
+	= @city.name
+
+- if can? :read, City
+	= link_to "Back", cities_path

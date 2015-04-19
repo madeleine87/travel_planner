@@ -1,6 +1,7 @@
 class TravelModesController < ApplicationController
 
 	load_and_authorize_resource
+  skip_load_resource :only  => [:create]
 
 	def index
 		@travel_modes = TravelMode.all
