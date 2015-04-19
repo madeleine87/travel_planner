@@ -19,5 +19,7 @@ table class="table table-striped"
 					- if can? :destroy, city
 						== link_to "Delete", city, method: :delete
 
+== will_paginate @cities, renderer: BootstrapPagination::Rails
+
 - if can? :create, City
 	== link_to "New", new_city_path

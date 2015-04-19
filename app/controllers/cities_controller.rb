@@ -4,7 +4,8 @@ class CitiesController < ApplicationController
   skip_load_resource :only  => [:create]
 
   def index
-		@cities = City.includes(:country).all
+		@cities = City.includes(:country).paginate(:page => params[:page], :per_page => 5)
+
 	end
 
 	def show
