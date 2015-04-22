@@ -1,9 +1,10 @@
 class TravelModesController < ApplicationController
 
-	before_action :fetch_travel_mode, only:[:show, :edit, :update, :destroy]
+	load_and_authorize_resource
+  skip_load_resource :only  => [:create]
 
 	def index
-		@travel_modes = TravelMode.all
+		@travel_modes = TravelMode.paginate(:page => params[:page], :per_page => 5)
 	end
 
 	def new
@@ -47,8 +48,4 @@ class TravelModesController < ApplicationController
 	def travel_mode_params
 		params.require(:travel_mode).permit(:name)
 	end
-
-	def fetch_travel_mode
-    @travel_mode = TravelMode.find(params[:id])
-  end
 end

@@ -1,9 +1,10 @@
 class JourneysController < ApplicationController
 
-	before_action :fetch_journey, only:[:show, :edit, :update, :destroy]
+	load_and_authorize_resource
+  skip_load_resource :only  => [:create]
 
 	def index
-		@journeys = Journey.includes(:from_city, :to_city, :travel_mode).all
+		@journeys = Journey.includes(:from_city, :to_city, :travel_mode).paginate(:page => params[:page], :per_page => 5)
 	end
 
 	def show
@@ -28,6 +29,7 @@ class JourneysController < ApplicationController
 
 	def create
 		@journey = Journey.new(journey_params)
+		#@journey.user = current_user
  		if @journey.save
    	 	redirect_to @journey
   	else
@@ -45,9 +47,5 @@ class JourneysController < ApplicationController
 	def journey_params
 		params.require(:journey).permit(:from_city_id, :to_city_id, :start_date, :end_date, :travel_mode_id, :km)
 	end
-
-	def fetch_journey
-    @journey = Journey.find(params[:id])
-  end
 end
 

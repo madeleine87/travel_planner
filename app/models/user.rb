@@ -5,10 +5,18 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 	has_many :journeys
 	belongs_to :city
-	
+
+	ROLES = %w[admin user]
 
 	validates :username, presence: true, uniqueness: true
 	validates :email, presence: true, uniqueness: true
 	validates :password, presence: true
 	validates_confirmation_of :password
+	validates :role, presence: true, inclusion: { in: ROLES }
+
+	def role?(role)
+		self.role == role.to_s
+  end
+
 end
+

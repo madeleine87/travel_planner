@@ -1,0 +1,10 @@
+h1 Countries
+div
+	| id:
+	== @country.id
+div
+	| Name:
+	== @country.name
+- if can? :read, Country
+	== link_to "Back", countries_path
+

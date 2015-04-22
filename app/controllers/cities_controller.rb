@@ -1,9 +1,11 @@
 class CitiesController < ApplicationController
 
-  before_action :fetch_city, only:[:show, :edit, :update, :destroy]
+  load_and_authorize_resource
+  skip_load_resource :only  => [:create]
 
   def index
-		@cities = City.includes(:country).all
+		@cities = City.includes(:country).paginate(:page => params[:page], :per_page => 5)
+
 	end
 
 	def show
@@ -29,7 +31,6 @@ class CitiesController < ApplicationController
   end
 
   def update
-
   	if @city.update(city_params)
   		redirect_to @city
   	else
@@ -40,7 +41,6 @@ class CitiesController < ApplicationController
   def destroy
 
     @city.destroy
-
     redirect_to cities_path
   end
 
@@ -48,8 +48,4 @@ class CitiesController < ApplicationController
   	def city_params
     	params.require(:city).permit(:name, :country_id)
  	  end
-
-    def fetch_city
-        @city = City.find(params[:id])
-    end
   end

@@ -1,0 +1,9 @@
+h1 Travel Mode
+div
+	| id:
+	== @travel_mode.id
+div
+	| Travel mode:
+	== @travel_mode.name
+- if can? :read, TravelMode
+	== link_to "Back", travel_modes_path

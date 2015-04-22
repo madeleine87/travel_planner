@@ -1,0 +1,25 @@
+h1 Countries
+table class="table table-striped"
+	thead
+		tr
+			th id
+			th Country
+			th Edit
+			th Delete
+
+	tbody
+		- @countries.each do |country|
+			tr
+				td = country.id
+				td = country.name
+				td
+					- if can? :update, country
+						== link_to "Edit", edit_country_path(country)
+				td
+					- if can? :destroy, country
+						== link_to "Delete", country, method: :delete
+
+== will_paginate @countries, renderer: BootstrapPagination::Rails
+
+- if can? :create, Country
+	== link_to "New", new_country_path, class: "btn btn-default btn-new"

@@ -1,0 +1,24 @@
+h1 Travel Modes
+table class="table table-striped"
+	thead
+		tr
+			th id
+			th Name
+			th Edit
+			th Delete
+	tbody
+		- @travel_modes.each do |travel_mode|
+			tr
+				td = travel_mode.id
+				td = travel_mode.name
+				td
+					- if can? :update, travel_mode
+						== link_to "Edit", edit_travel_mode_path(travel_mode)
+				td
+					- if can? :destroy, travel_mode
+						== link_to "Delete", travel_mode, method: :delete
+
+== will_paginate @travel_modes, renderer: BootstrapPagination::Rails
+
+- if can? :create, TravelMode
+	== link_to "New", new_travel_mode_path, class: "btn btn-default btn-new"

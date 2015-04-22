@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
 
-	before_action :fetch_user, only:[:show, :edit, :update, :destroy]
+	load_and_authorize_resource
+  skip_load_resource :only  => [:create]
 
 	def index
-		@users = User.includes(:city).all
+		@users = User.includes(:city).paginate(:page => params[:page], :per_page => 5)
 	end
 
 	def show
@@ -46,8 +47,4 @@ class UsersController < ApplicationController
 	def user_params
 		params.require(:user).permit(:username, :email, :password, :first_name, :last_name, :date_of_birth, :city_id)
 	end
-
-	def fetch_user
-    @user = User.find(params[:id])
-  end
 end

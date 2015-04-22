@@ -1,30 +1,32 @@
-<h1>All Users</h1>
-<table class="table table-striped">
-	<thead>
-		<tr>
-			<th>id</th>
-			<th>Username</th>
-			<th>Email</th>
-			<th>First name</th>
-			<th>Last name</th>
-			<th>City</th>
-			<th>Edit</th>
-			<th>Delete</th>
-		</tr>
-	</thead>
-	<tbody>
-		- @users.each do |user| 
-			<tr>
-				<td>#{user.id}</td>
-				<td> #{user.username} </td>
-				<td><%= user.email %></td>
-				<td><%= user.first_name %></td>
-				<td><%= user.last_name %></td>
-				<td><%= user.city.name unless user.city == nil %></td>
-				<td><%= link_to "Edit", edit_user_path(user) %></td>
-				<td><%= link_to "Delete", user, method: :delete %></td>
-			</tr>
-		
-	</tbody>
-</table>
-<p><%= link_to "New", new_user_path %></p>
+h1 All Users
+table class="table table-striped"
+	thead
+		tr
+			th id
+			th Username
+			th Email
+			th First name
+			th Last name
+			th City
+			th Edit
+			th Delete
+	tbody
+		- @users.each do |user|
+			tr
+				td = user.id
+				td = user.username
+				td = user.email
+				td = user.first_name
+				td = user.last_name
+				td = user.city.name unless user.city == nil
+				td
+					- if can? :update, user
+						== link_to "Edit", edit_user_path(user)
+				td
+					- if can? :destroy, user
+						== link_to "Delete", user, method: :delete
+
+== will_paginate @users, renderer: BootstrapPagination::Rails
+
+- if can? :create, User
+	== link_to "New", new_user_path, class: "btn btn-default btn-new"

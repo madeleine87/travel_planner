@@ -1,0 +1,26 @@
+h1 Journey
+div
+	| id:
+	== @journey.id
+div
+	| From:
+	== @journey.from_city.name unless @journey.from_city == nil
+div
+	| To:
+	== @journey.to_city.name unless @journey.to_city == nil
+div
+	| Start date:
+	== @journey.start_date.strftime("%m/%d/%Y")
+div
+	| End date:
+	== @journey.end_date.strftime("%m/%d/%Y")
+div
+	| Travel Mode:
+	== @journey.travel_mode.name unless @journey.travel_mode == nil
+div
+	| Km:
+	== @journey.km
+
+- if can? :read, Journey
+	== link_to "Back", journeys_path
+
