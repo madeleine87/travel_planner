@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150426102444) do
+ActiveRecord::Schema.define(version: 20150426103527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,11 @@ ActiveRecord::Schema.define(version: 20150426102444) do
     t.integer  "travel_mode_id"
     t.integer  "user_id"
   end
+
+  add_index "journeys", ["from_city_id"], name: "index_journeys_on_from_city_id", using: :btree
+  add_index "journeys", ["to_city_id"], name: "index_journeys_on_to_city_id", using: :btree
+  add_index "journeys", ["travel_mode_id"], name: "index_journeys_on_travel_mode_id", using: :btree
+  add_index "journeys", ["user_id"], name: "index_journeys_on_user_id", using: :btree
 
   create_table "travel_modes", force: true do |t|
     t.string   "name"
