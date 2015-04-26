@@ -15,9 +15,7 @@ RSpec.describe JourneysController, type: :controller do
 
   describe "GET #show" do
     it "returns http success" do
-      journey1 = FactoryGirl.build(:journey)
-      journey1.user = @user
-      journey1.save
+      journey1 = FactoryGirl.create(:journey, user: @user)
       get :show, id: journey1.id
       expect(response).to be_success
       expect(response).to have_http_status(:success)
