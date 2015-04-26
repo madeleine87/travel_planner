@@ -1,35 +1,35 @@
-== form_for @journey, :html => {:class => "form-horizontal"} do |f|
-  div.form-group
-    == f.label :id, class: "col-sm-2 control-label"
-    div.col-sm-10
-      == @journey.id
-  div.form-group
-    == f.label :from_city_id, class: "col-sm-2 control-label"
-    div.col-sm-10
-      == f.select :from_city_id, City.all.collect { |p| [ p.name, p.id ] }, {include_blank: true}, {:class => "form-control"}
-  div.form-group
-    == f.label :to_city_id, class: "col-sm-2 control-label"
-    div.col-sm-10
-      == f.select :to_city_id, City.all.collect { |p| [ p.name, p.id ] }, {include_blank: true}, {:class => "form-control"}
-  div.form-group
-    == f.label :start_date, class: "col-sm-2 control-label"
-    div.col-sm-10
-      == f.date_field :start_date, class: "form-control"
-  div.form-group
-    == f.label :end_date, class: "col-sm-2 control-label"
-    div.col-sm-10
-      == f.date_field :end_date, class: "form-control"
-  div.form-group
-    == f.label :travel_mode_id, class: "col-sm-2 control-label"
-    div.col-sm-10
-      == f.select :travel_mode_id, TravelMode.all.collect { |p| [ p.name, p.id ] }, {include_blank: true}, {:class => "form-control"}
-  div.form-group
-    == f.label :km, class: "col-sm-2 control-label"
-    div.col-sm-10
-      == f.number_field :km, class: "form-control"
-  div class="col-sm-offset-2 col-sm-10"
-    == f.submit class: "btn btn-default"
+= form_for @journey, :html => {:class => "form-horizontal"} do |f|
+  .form-group
+    = f.label :id, class: "col-sm-2 control-label"
+    .col-sm-10
+      = @journey.id
+  .form-group
+    = f.label :from_city_id, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.select :from_city_id, City.all.collect { |p| [ p.name, p.id ] }, {include_blank: true}, {:class => "form-control"}
+  .form-group
+    = f.label :to_city_id, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.select :to_city_id, City.all.collect { |p| [ p.name, p.id ] }, {include_blank: true}, {:class => "form-control"}
+  .form-group
+    = f.label :start_date, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.date_field :start_date, class: "form-control"
+  .form-group
+    = f.label :end_date, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.date_field :end_date, class: "form-control"
+  .form-group
+    = f.label :travel_mode_id, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.select :travel_mode_id, TravelMode.all.collect { |p| [ p.name, p.id ] }, {include_blank: true}, {:class => "form-control"}
+  .form-group
+    = f.label :km, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.number_field :km, class: "form-control"
+  .col-sm-offset-2.col-sm-10
+    = f.submit class: "btn btn-default"
 
-  div class="col-sm-offset-2 col-sm-10"
+  .col-sm-offset-2.col-sm-10
     - if can? [:create, :update], @journey
-      == link_to "Back", journeys_path, class: "btn btn-default"
+      = link_to "Back", journeys_path, class: "btn btn-default"

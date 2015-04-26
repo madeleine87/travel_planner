@@ -1,10 +1,10 @@
 h1 Countries
 div
 	| id:
-	== @country.id
+	= @country.id
 div
 	| Name:
-	== @country.name
+	= @country.name
 - if can? :read, Country
-	== link_to "Back", countries_path
+	= link_to "Back", countries_path
 

@@ -1,14 +1,14 @@
-== form_for @travel_mode, :html => {:class => "form-horizontal"} do |f|
-  div.form-group
-    == f.label :id, class: "col-sm-2 control-label"
-    div.col-sm-10
-      == @travel_mode.id
-  div.form-group
-    == f.label :name, class: "col-sm-2 control-label"
-    div.col-sm-10
-      == f.text_field :name, class: "form-control"
-  div class="col-sm-offset-2 col-sm-10"
-    == f.submit class: "btn btn-default"
-  div class="col-sm-offset-2 col-sm-10"
+= form_for @travel_mode, :html => {:class => "form-horizontal"} do |f|
+  .form-group
+    = f.label :id, class: "col-sm-2 control-label"
+    .col-sm-10
+      = @travel_mode.id
+  .form-group
+    = f.label :name, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :name, class: "form-control"
+  .col-sm-offset-2.col-sm-10
+    = f.submit class: "btn btn-default"
+  .col-sm-offset-2.col-sm-10
     - if can? [:create, :update], @travel_mode
-      == link_to "Back", travel_modes_path, class: "btn btn-default"
+      = link_to "Back", travel_modes_path, class: "btn btn-default"
